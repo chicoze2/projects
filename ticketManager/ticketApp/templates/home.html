@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+{% include 'components/navbar.html' %}
+
+<style>
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-header {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+
+}
+
+.title{
+  
+  display: flex;
+  justify-content:  space-around;
+
+}
+
+</style>
+
+<body> 
+  <div class="container-fluid body-header">
+
+    <h1>Home</h1>
+    <hr>
+    <div class="container">
+      <h3>Listagem de protocolos</h3>
+      <a class='btn btn-primary' href="{% url 'create_protocol_url' %}">CRIAR PROTOCOLO</a>
+
+    </div>
+    
+  </div>
+  <div class="container">
+    
+    
+    {% for p in protocolos %}
+    <div class="container">
+      
+      <strong>{{p.name}}</strong>
+      <p>{{p.empresa}}</p>
+      <p>{{p.description}}</p>  
+      
+      <small>{{p.created_at|timesince}}</small>
+    </div>
+    <hr>
+    
+    {% endfor %}
+  </div>
+</body>
+  {% endblock %}

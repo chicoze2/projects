@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.terminal.activateEnvInCurrentTerminal": true,
+    "python.defaultInterpreterPath": "~/env/Scripts/python"
+	}
+	
+}

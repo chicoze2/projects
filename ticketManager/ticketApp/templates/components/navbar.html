@@ -1,0 +1,21 @@
+{% block content %}
+
+<div class="container">
+
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="https://toppng.com/uploads/preview/two-tickets-icon-ticket-ico-11562902873mix2fznwjo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Protocol Manager
+    </a>
+
+    <a class="row align-itens-center" href="user_profile">
+      <div class="user_image">
+        <img width="30" height="30"  src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt="User Icon">
+      </div>
+      <p>{{request.user.username}}</p>
+    </a>
+
+  </nav>
+  
+</div>
+{% endblock %}
