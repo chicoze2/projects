@@ -15,23 +15,9 @@ class User(AbstractUser):
     name = models.CharField(max_length=100, null=True)
     username = models.CharField(max_length=150, unique=True)
 
-    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='usuarios')
-
- # Add unique related_names for the ForeignKey fields
-    groups = models.ManyToManyField(
-        'auth.Group',
-        blank=True,
-        related_name='custom_user_set',
-        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-        verbose_name='groups',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        blank=True,
-        related_name='custom_user_set',
-        help_text='Specific permissions for this user.',
-        verbose_name='user permissions',
-    )
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='usuarios', default=None , null=True)
+    supervisor =  models.BooleanField(default=False)
+    email = models.EmailField(max_length = 254, null=True, default=None)
 
     USERNAME_FIELD = 'username'
 

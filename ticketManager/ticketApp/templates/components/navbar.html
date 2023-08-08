@@ -1,20 +1,52 @@
 {% block content %}
+{% load static %}
 
 <div class="container">
 
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="https://toppng.com/uploads/preview/two-tickets-icon-ticket-ico-11562902873mix2fznwjo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-      Protocol Manager
-    </a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <!-- Logo e Nome (alinhados à esquerda) -->
+      <a class="navbar-brand" href="{% url 'home_url' %}">
+        <img src="{% static 'images/manage.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+        Gerenciamento
+      </a>
+  
+      {% if request.user.is_authenticated %}
+      <!-- Nome de Usuário e Avatar (alinhados à direita) -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="{% url 'update_user_url' %}">
+            <span class="navbar-text pr-3">
+              {{ request.user.name }}
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <img src="{% static 'images/avatar_anon.png' %}" width="30" height="30" alt="Avatar" class="rounded-circle">
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'logout_url' %}">Logout</a>
+        </li>
+      </ul>
 
-    <a class="row align-itens-center" href="user_profile">
-      <div class="user_image">
-        <img width="30" height="30"  src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt="User Icon">
-      </div>
-      <p>{{request.user.username}}</p>
-    </a>
+      {% else %}
+      <a href="{% url 'login_url' %}">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <span class="navbar-text pr-3">
+              Login
+            </span>
+          </li>
+          <li class="nav-item">
+            <img src="{% static 'avatar_anon.png' %}" width="30" height="30" alt="Avatar" class="rounded-circle">
+          </li>
+        </ul>      
+      </a>
 
+      {% endif %}
+      
+
+    </div>
   </nav>
   
 </div>
