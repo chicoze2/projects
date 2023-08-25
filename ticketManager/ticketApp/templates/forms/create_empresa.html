@@ -26,17 +26,17 @@
             <a href="{{request.META.HTTP_REFERER}}" class="btn btn-back">
               <i class="fas fa-arrow-left"></i>
             </a>
-            <h2 class="card-title mb-0 mx-auto">Criar Protocolo</h2>
+            <h2 class="card-title mb-0 mx-auto">Registrar Empresa</h2>
           </div>
           <form action="" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <label for="name">Nome do protocolo</label>
+              <label for="name">Nome da empresa</label>
               <input type="text" class="form-control" name="name" placeholder="Ex: NF #12345">
             </div>
             <div class="form-group">
               <label for="description"></label>
-              <textarea placeholder="Descrição do protocolo" class="form-control" rows='10' name="description"></textarea>
+              <textarea placeholder="Des" class="form-control" rows='10' name="description"></textarea>
             </div>
             <hr>
             <div class="text-center">

@@ -1,9 +1,30 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<div class="container">
-  <h1>Hello</h1>
-  {{form.as_p}}
-</div>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="d-flex align-items-center justify-content-start mb-4">
+              <a href="{{request.META.HTTP_REFERER}}" class="btn btn-back">
+                <i class="fas fa-arrow-left"></i>
+              </a>
+              <h2 class="card-title mb-0 mx-auto">Editar Protocolo</h2>
+            </div>
+            <form method="post">
+              {% csrf_token %}
+              <div class="text-center">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Atualizar registro</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
   
-{% endblock content %}
+{% endblock %}

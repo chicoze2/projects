@@ -1,6 +1,4 @@
 {% extends 'main.html' %}
-
-
 {% block content %}
 
 {% include 'components/navbar.html' %}
@@ -41,7 +39,14 @@ body{
     <hr>
     <div class="container d-flex justify-content-between align-items-center">
       <h3 class="m-0">Listagem de protocolos</h3>
-      <a class='btn btn-primary' href="{% url 'create_protocol_url' %}">CRIAR PROTOCOLO</a>
+      <div class="buttons">
+
+        <a class='btn btn-primary' href="{% url 'create_protocol_url' %}">  Criar Protocolo  <i class="fas fa-plus"></i> </a> 
+        {% if request.user.is_staff %}
+        <a class='btn btn-secondary' href="{% url 'supervisor_url' %}">Painel Administração</a>
+        {% endif %}
+      </div>
+
     </div>
     
   </div>
@@ -49,22 +54,9 @@ body{
   <div class="container">
 
     {% for p in protocolos %}
-    <div class="protocolo container border position-relative">
-      <div class="d-flex justify-content-end">
-        <a href="{% url 'edit_protocol_url' p.id %}" class="btn btn-light mt-1 m-3">
-          <i class="fas fa-pencil-alt"></i> Editar
-        </a>
-        <a href="{}" class="btn btn-info mt-1 m-3">
-          <i class="fas fa-eye"></i> Visualizar
-        </a>
-      </div>
-      <strong>{{p.name}}</strong>
-      <p>{{p.empresa}}</p>
-      <p>{{p.description}}</p>  
+
+    {% include 'components/protocol_item.html' %}
       
-      <small>Criado em: {{p.created_at}} | Editado há: {{p.created_at|timesince}}</small>
-    </div>
-    
     {% endfor %}
     <hr>
     </div>

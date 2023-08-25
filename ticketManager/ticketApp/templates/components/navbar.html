@@ -1,14 +1,14 @@
 {% block content %}
 {% load static %}
 
-<div class="container">
+<div class="container-fluid">
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container border p-3">
       <!-- Logo e Nome (alinhados à esquerda) -->
       <a class="navbar-brand" href="{% url 'home_url' %}">
         <img src="{% static 'images/manage.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Logo">
-        Gerenciamento
+        Gerencia de protocolos
       </a>
   
       {% if request.user.is_authenticated %}

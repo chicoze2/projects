@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+
 
 
 
@@ -15,15 +16,76 @@ def home_view(request):
       if request.user.is_staff:
         protocolos = Protocolo.objects.all().order_by('-pk') ## Do maior  ID pro menor
       else:
-        protocolos = Protocolo.objects.filter(empresa=request.user. empresa).order_by('-pk')
+        protocolos = Protocolo.objects.filter(empresa=request.user.empresa).order_by('-pk')
 
 
-      ctx = {'protocolos': protocolos}
+      ctx = {'protocolos': protocolos, 'page': 'home'}
       return render(request, 'home.html', ctx)
 
     else:
       return redirect('login_url')
 
+@permission_required('is_staff')
+def supervisor_view(request):
+
+  empresas = Empresa.objects.all()
+  protocolos = Protocolo.objects.all()
+  users = User.objects.all()
+
+  q = request.GET.get('q')
+  page = ''
+  listagem = ''
+
+  if q =='users':
+    listagem = {
+      'title' : 'Usuarios',
+      'col1' : 'ID',
+      'col2' : 'Nome',
+      'col3':  'Email',
+      'col4':  'Empresa'
+      
+    }
+    page = 'users'
+    
+
+  elif q == 'empresas':
+
+    listagem = {
+      'title' : 'Empresas',
+      'col1' : 'ID',
+      'col2' : 'Nome',
+      'col3':  'Protocolos',
+      'col4':  'Usuarios'
+      
+    }
+    page = 'empresas'
+
+  elif q == 'protocolos':
+    listagem = {
+      'title' : 'Protocolos',
+      'col1' : 'ID',
+      'col2' : 'Nome',
+      'col3':  'Descricao',
+      'col4':  'Empresa',
+      'col5': 'Data'
+    }
+    page = 'protocolos'
+    
+  elif not q:
+
+    listagem = {
+      'title' : 'Empresas',
+      'col1' : 'ID',
+      'col2' : 'Nome',
+      'col3':  'Protocolos',
+      'col4':  'Usuarios'
+      
+    }
+    page = 'empresas'
+
+
+  context = {'empresas': empresas, 'users': users, 'protocolos': protocolos, 'page': page, 'listagem': listagem}
+  return render(request, 'supervisor.html', context)
 
 ###################
 ## USER FUNCIONS ##
@@ -101,6 +163,8 @@ def update_user_view(request):
       form.save()
       print('>>>>>>>> form saved successfully')
       return redirect('/', user.id)
+    else:
+      print('>>>>>>>>>> err')
 
   return render(request, 'forms/update_user_form.html', {"form": form})
 
@@ -118,6 +182,7 @@ def create_protocol_view(request):
 
         form = CreateProtocolForm(request.POST, initial={"empresa": request.user.empresa, "author": request.user})
         protocolo = form.save(commit=False) ## objeto protocolo vindo do form
+
         protocolo.author = request.user
         protocolo.empresa = request.user.empresa
 
@@ -134,7 +199,23 @@ def create_protocol_view(request):
 
 def edit_protocol_view(request, pk):
   
-  form = EditProtocolForm(request.POST)
+  protocol = Protocolo.objects.get(id = int(pk))
+  data = {'name': protocol.name, 'description': protocol.description}
+  form = EditProtocolForm(data)
 
   ctx = {'form': form}
   return render(request, 'forms/edit_protocol_form.html', ctx)
+
+def list_by_empresa_view(request):
+  empresa_id = request.GET.get('selected_empresa')
+  empresa_nome = Empresa.objects.get(id=empresa_id)
+  protocolos = Protocolo.objects.filter(empresa__id=empresa_id)
+  
+  ctx = {'protocolos': protocolos, 'empresa': empresa_nome}
+  return render(request, 'list_by_empresa.html', ctx)
+
+
+@permission_required('is_staff')
+def create_empresa_view(request):
+
+  return render(request, 'forms/create_empresa.html')

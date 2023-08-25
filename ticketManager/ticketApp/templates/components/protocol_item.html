@@ -1,0 +1,49 @@
+{% block content %}
+
+<div class="listagem container p-4 mt-4 border rounded-top rounded-bottom protocolo">
+  <div class="row">
+      <div class="col-md-8">
+          <div class="row align-items-start">
+                <div class="row">
+                    <h5>{{p.name}}</h5> 
+
+                </div>
+                {% if page == 'home'%}
+
+                <div class="row">
+                    <div class="col-md-auto"><h6>Usuário:</h6></div>
+                    <div class="col">{{p.author.name}}</div>
+
+                </div>
+
+
+                {% else %}
+                <div class="row">
+                    <div class="col-md-auto"><h6>Empresa:</h6></div>
+                    <div class="col">{{p.empresa}}</div>
+
+                </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col-md-auto"><h6>Detalhes:</h6></div>
+                    <div class="col">{{p.description}}</div>
+                </div>
+
+                <div class="row">
+                    <small>Criado em: {{p.created_at}} | Editado há: {{p.created_at|timesince}}</small>
+                </div>
+                
+          </div>
+      </div>
+      <div class="col-md-4 d-flex justify-content-end align-items-start">
+          <div class="buttons">
+              <button class="btn btn-primary">Ver</button>
+              {% if request.user.is_staff %}
+              <a href="{% url 'edit_protocol_url' p.id %}" class="btn btn-secondary ml-2">Editar</a>
+              {% endif %}
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

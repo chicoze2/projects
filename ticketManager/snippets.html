@@ -24,3 +24,84 @@
     </div>
   </div>
 </div>
+
+
+botoes    
+
+<div class="container-fluid">
+      <div class="row">
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+            <div class="box bg-cyan text-center">
+              <h1 class="font-light text-white">
+                <i class="mdi mdi-view-dashboard"></i>
+              </h1>
+              <h6 class="text-white">Criar Usuário</h6>
+            </div>
+          </div>
+        </div>
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+            <div class="box bg-success text-center">
+              <h1 class="font-light text-white">
+                <i class="mdi mdi-chart-areaspline"></i>
+              </h1>
+              <h6 class="text-white">Registrar Empresa</h6>
+            </div>
+          </div>
+        </div>
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+            <div class="box bg-warning text-center">
+              <h1 class="font-light text-white">
+                <i class="mdi mdi-collage"></i>
+              </h1>
+              <h6 class="text-white">Filtrar protocolo por empresa</h6>
+              <form action="{% url 'list_by_empresa_url' %}" method="GET">
+                <select name="selected_empresa">
+                  {% for empresa in empresas %}
+                  <option value="{{empresa.id}}">{{empresa.id}} {{empresa}}</option>
+                  {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+            <div class="box bg-warning text-center">
+              <h1 class="font-light text-white">
+                <i class="mdi mdi-collage"></i>
+              </h1>
+              <h6 class="text-white">Editar empresa</h6>
+              <form action="{% url 'list_by_empresa_url' %}" method="GET">
+                <select name="selected_empresa">
+                  {% for empresa in empresas %}
+                  <option value="{{empresa.id}}">{{empresa.id}} {{empresa}}</option>
+                  {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Editar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card card-hover">
+            <div class="box bg-danger text-center">
+              <h1 class="font-light text-white">
+                <i class="mdi mdi-border-outside"></i>
+              </h1>
+              <h6 class="text-white">Listar tudo</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

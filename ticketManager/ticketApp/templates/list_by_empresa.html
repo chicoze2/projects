@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+  .protocolo{
+  margin-top: 10px;
+}
+
+</style>
+
+{% include 'components/navbar.html' %}
+<div>
+  <div style="background-color: blue;" class="cabecalho container text-center">
+    <h1>Listagem de protocolos por empresa</h1>
+    <h3>Empresa: {{empresa}}</h3>
+    <hr>
+  </div>
+
+  {% for p in protocolos %}
+  {% include 'components/protocol_item.html' %} 
+  {% endfor %}
+
+</div>
+
+{% endblock %}
