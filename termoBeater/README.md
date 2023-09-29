@@ -4,7 +4,7 @@ Utilizando essas informações, o script começa a filtrar as palavras a partir 
 
 Para melhorar a precisão das respostas e diminuir o número de tentativas, utilizei 4 filtros sendo;
 
-1 - Filtra palavras que nescessáriamente contém a letra informada
-2 - Filtra palavras que não possuem a letra informada
-3 - Filtra palavras que possuem a letra informada pelo usuário em uma posição específica
-4 - Filtra por negativa de posição, ou seja, caso o usuário informe a letra “C” na posição 2, todas as palavras que cumprem a condição são removidas dos possíveis resultados
+# 1 - Filtra palavras que nescessáriamente contém a letra informada. <br>
+# 2 - Filtra palavras que não possuem a letra informada. <br>
+# 3 - Filtra palavras que possuem a letra informada pelo usuário em uma posição específica. <br>
+# 4 - Filtra por negativa de posição, ou seja, caso o usuário informe a letra “C” na posição 2, todas as palavras que cumprem a condição são removidas dos possíveis resultados. <br>
