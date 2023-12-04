@@ -179,7 +179,7 @@
             <td>
               {{u.id}}
             </td>
-            <td><a href="#">{{u.name}}</a></td>
+            <td><a href="{% url 'update_user_url' u.id %}">{{u.name}}</a></td>
             <td>
               {{u.email}}
               <small class="d-block">Text Small</small>

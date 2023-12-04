@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -131,6 +131,7 @@ def create_new_user_view(request):
   if request.method == 'POST':
     form = CustomUserCreationForm(request.POST)
     if form.is_valid():
+      print('--------------')
       user = form.save(commit=False)
 
       user.username = user.username.lower() 
@@ -138,15 +139,21 @@ def create_new_user_view(request):
       login(request, user)
       return redirect('/')
     else:
-      messages.error(request,'Something went wrong. Please try again')
+      print(form.errors)
+      messages.error(request, form.errors)
 
   context = {'page': page, 'form': form}
   return render(request, 'forms/login_register.html', context)
 
 @login_required(login_url='login')
-def update_user_view(request):
+def update_user_view(request, user_id=None):
 
-  user = request.user
+  if user_id == None:
+    user_id = request.user.id
+
+  user = get_object_or_404(User, pk=user_id)
+  
+
   form = SimpleUserEditForm(instance=user) 
 
   if user.is_staff:

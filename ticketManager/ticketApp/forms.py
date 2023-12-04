@@ -1,5 +1,6 @@
 from django.forms  import *
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 from django.contrib import admin
 
 
@@ -17,9 +18,11 @@ class EditProtocolForm(ModelForm):
 
 
 class CustomUserCreationForm(UserCreationForm):
-  class Meta(UserCreationForm.Meta):
-   model = User
-   fields = UserCreationForm.Meta.fields + ('name', 'username')
+   class Meta(UserCreationForm.Meta):
+      model = User
+      fields = UserCreationForm.Meta.fields + ('name', 'username')
+
+
 
 
 class SimpleUserEditForm(ModelForm):

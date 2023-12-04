@@ -16,7 +16,9 @@ urlpatterns = [
     path('login', views.login_view, name='login_url'),
     path('logout', views.logout_function, name='logout_url'),
     path('register', views.create_new_user_view, name='register_url'),
+    path('update-user/<int:user_id>', views.update_user_view, name='update_user_url'),
     path('update-user', views.update_user_view, name='update_user_url'),
+
 
     
     ##??
