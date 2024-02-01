@@ -2,9 +2,9 @@ import mysql.connector
 import json
 
 ipDoBanco = 
-usuarioBanco = 'chico'
+usuarioBanco = ''
 senhaBanco = 
-database = 'boo-monitor'
+database = ''
 
 def conectarBanco(querry_string):
     connection = mysql.connector.connect(host=ipDoBanco,

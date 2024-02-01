@@ -18,10 +18,10 @@ canalrestokID = 801239710725963806 ## original
 
 
 ######################
-# ipDoBanco = '5.183.8.41'
-# usuarioBanco = 'chico'
-# senhaBanco = '@Chicoze2603'# parametros para a conexao 
-# database = 'boo-monitor'   # com o banco de dados
+# ipDoBanco = ''
+# usuarioBanco = ''
+# senhaBanco = ''# parametros para a conexao 
+# database = ''   # com o banco de dados
 
 # connection = mysql.connector.connect(host=ipDoBanco,
 #                              user=usuarioBanco,
